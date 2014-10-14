@@ -2,7 +2,8 @@ import WorldData
 
 
 def __init__():
-	print('Loading GameObject class...Done')
+	#print('Loading GameObject class...Done')
+        pass
 
 class GameObject():
 		
