@@ -6,7 +6,7 @@ class BoxObject(GameObject.GameObject):
 
     def __init__(self):
         self.movingSpeed = 5
-        pass
+        super().__init__()
 
     def move(self):
         if (WorldData.isDownPressed == True):

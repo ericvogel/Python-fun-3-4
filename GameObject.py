@@ -6,7 +6,6 @@ def __init__():
         pass
 
 class GameObject():
-        rotation = 0
         
         def __init__(self):
                 """Creates a GameObject with a starting position of 0,0."""
@@ -14,7 +13,6 @@ class GameObject():
                 self.y = 0
                 self.image = None
                 self.rotation = 0
-                print("init rotation =", self.rotation)
                 
         def setPos(self, newX, newY):
                 """Sets the GameObject's position to a new position."""
@@ -49,6 +47,12 @@ class GameObject():
 
         def getHeight(self):
                 return self.image.height()
+        
+        def getRotation(self):
+                return self.rotation
+        
+        def setRotation(self, newRotation):
+                self.rotation = newRotation
 
         def getCollision(self, collidingClass = None):
                 self.tempList = list(WorldData.ObjectList)

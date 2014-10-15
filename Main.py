@@ -3,6 +3,7 @@ import time
 import WorldData
 import BoxObject
 import StaticBox
+import GameWorld
 
 #=====main window===========================================
 master = Tk()
@@ -35,17 +36,7 @@ def Run():
 
 	def clearScreen():
 		w.delete(ALL)
-
-
-	box1 = BoxObject.BoxObject()
-	box1_Image = PhotoImage(file = 'Bin/Images/img.gif')
-	WorldData.addToObjectList(box1, 100, 100, box1_Image)
-
-	box2 = StaticBox.StaticBox()
-	box2_Image = PhotoImage(file = 'Bin/Images/img2.gif')
-	WorldData.addToObjectList(box2, 400, 300, box2_Image)
-
-
+	
 	def drawObjects():
 		#print 'drawing objects'
 		
@@ -129,6 +120,7 @@ def Run():
 	#timeOne = time.time()
 	#print timeOne
 	counter = 0
+	GameWorld.loadObjects()
 	while(True):
 		clearScreen()
 		timeOne = time.time()
