@@ -1,8 +1,6 @@
 from tkinter import *
 import time
 import WorldData
-import BoxObject
-import StaticBox
 import GameWorld
 
 #=====main window===========================================
@@ -30,18 +28,28 @@ def getW():
 	return w
 
 def Run():
-	frameRate = 60
+	frameRate = 120
 	global w
 	global master
 
 	def clearScreen():
-		w.delete(ALL)
+		w.delete("some")
 	
 	def drawObjects():
 		#print 'drawing objects'
 		
 		for objectToDraw in WorldData.getObjectList(): 
-			w.create_image(objectToDraw.getX(), objectToDraw.getY(), image = objectToDraw.getDraw())
+			if (objectToDraw.__class__.__name__ == "LineObject"):
+				#print("hi")
+				w.create_line(objectToDraw.getP1()[0], objectToDraw.getP1()[1], objectToDraw.getP2()[0], objectToDraw.getP2()[1], tags = "some")
+				w.create_oval(objectToDraw.getP1()[0]-1, objectToDraw.getP1()[1]-1, objectToDraw.getP1()[0]+1, objectToDraw.getP1()[1]+1, fill = "black", tags = "some")
+				w.create_oval(objectToDraw.getP2()[0]-1, objectToDraw.getP2()[1]-1, objectToDraw.getP2()[0]+1, objectToDraw.getP2()[1]+1, fill = "black", tags = "some")
+				continue
+			if (objectToDraw.__class__.__name__ == "PointObject"):
+				w.create_oval(objectToDraw.getX()-2, objectToDraw.getY()-2, objectToDraw.getX()+2, objectToDraw.getY()+2, fill = "black")
+				continue
+				
+			w.create_image(objectToDraw.getX(), objectToDraw.getY(), image = objectToDraw.getDraw(), tags = "some")
 			#w.create_line(objectToDraw.getX(), objectToDraw.getY(), 400, 300)
 			#print objectToDraw.getDraw()
 
@@ -126,6 +134,8 @@ def Run():
 		timeOne = time.time()
 		updateObjects()
 		drawObjects()
+		WorldData.updateFrameCounter()
+		GameWorld.updateWorld()
 		w.update()
 		while timeOne+(1.0/frameRate)> time.time():
 			time.sleep(.001)
