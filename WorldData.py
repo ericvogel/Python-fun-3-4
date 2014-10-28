@@ -8,6 +8,9 @@ isDownPressed = False
 isRightPressed = False
 isLeftPressed = False
 frameCounter = 0
+mouseX = 1
+mouseY = 1
+mousePressed = False
 
 ObjectList = []
 LineList = []
@@ -22,6 +25,28 @@ def getFrameCounter():
 def updateFrameCounter():
 	global frameCounter
 	frameCounter += 1
+
+def getMouseX():
+        global mouseX
+        return mouseX
+
+def getMouseY():
+        global mouseY
+        return mouseY
+
+def setMousePos(nx, ny):
+        global mouseX
+        global mouseY
+        mouseX = nx
+        mouseY = ny
+        
+def setMousePressed(nstate):
+        global mousePressed
+        mousePressed = nstate
+
+def getMousePressed():
+        global mousePressed
+        return mousePressed
 
 def getWorldWidth():
 	return worldWidth
